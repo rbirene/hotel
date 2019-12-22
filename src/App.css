@@ -3,47 +3,38 @@
   --gold: #b5ab75;
   --grey: #464646;
   --purple: #4f536c;
-  --white: #fff;
+  --white: #fbfbfb;
 }
 
 *{
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: var(--grey);
 }
 
 body{
   margin: 0;
+  background: var(--white);
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Yeseva One', cursive;
+  text-align: center;
+}
+
+h2{
+  font-size: 3em;
+}
+
+h2:after{
+  border-bottom: 4px solid;
+  border-color: inherit;
+  content: "";
+  display: block;
+  margin: 0 auto;
+  padding: 3px 0;
+  width: 60px;
 }
 /* =============GLOBAL END============= */
-
-/* =============GRID LAYOUT============= */
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: "Header Header Header" "about about about";
-}
-
-.Header {
-  grid-area: Header;
-}
-
-.Home .about {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "img desc desc";
-  grid-area: about;
-}
-
-.Home .about .img {
-  grid-area: img;
-}
-
-.Home .about .desc {
-  grid-area: desc;
-}
-
-/* =============GRID LAYOUT END============= */
 
 /* =============COMPONENTS============= */
 
@@ -107,7 +98,36 @@ nav {
 
 /* =============PAGES============= */
 
+/*HOME*/
+.Home {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "about about about";
+}
 
+.Header {
+  grid-area: Header;
+}
+
+.Home .about {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "img desc desc";
+  grid-area: about;
+}
+
+.Home .about .img {
+  background-position: center center;
+  background-size: cover;
+  grid-area: img;
+}
+
+.Home .about .desc {
+  grid-area: desc;
+  padding: 30px;
+}
 
 /* =============PAGES END============= */
 

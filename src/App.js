@@ -12,7 +12,7 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <div className="grid-container">
+    <div>
       <Header/>
       <Switch>
         <Route exact path="/" component={Home}/>
