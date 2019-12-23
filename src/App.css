@@ -1,23 +1,23 @@
 /* =============GLOBAL============= */
 :root{
   --gold: #b5ab75;
-  --grey: #464646;
+  --grey-dark: #333333;
+  --grey-light: #dcdcdc;
   --purple: #4f536c;
   --white: #fbfbfb;
 }
 
-*{
-  font-family: 'Poppins', sans-serif;
-  color: var(--grey);
-}
-
 body{
+  background-color: var(--white);
+  color: var(--grey-dark);
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  background: var(--white);
 }
 
 h1, h2, h3, h4, h5, h6{
   font-family: 'Yeseva One', cursive;
+  font-weight: 400;
+  margin: 10px 0;
   text-align: center;
 }
 
@@ -25,7 +25,7 @@ h2{
   font-size: 3em;
 }
 
-h2:after{
+h2::after{
   border-bottom: 4px solid;
   border-color: inherit;
   content: "";
@@ -34,12 +34,41 @@ h2:after{
   padding: 3px 0;
   width: 60px;
 }
+
+h3{
+  font-size: 2em;
+}
+
+.btn-grey{
+  background-color: var(--grey-dark);
+  border: solid 1px rgba(0,0,0,0.0);
+  color: var(--white);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-grey:hover{
+  background-color:rgba(0,0,0,0.0);
+  border: solid 1px var(--grey-dark);
+  color: var(--grey-dark);
+  transition: 0.2s;
+}
+
 /* =============GLOBAL END============= */
 
 /* =============COMPONENTS============= */
 
 /*HEADER*/
+.Header{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: "img" "nav";
+}
+
 header{
+  grid-area: img;
   background-position: center center;
   background-size: cover;
   height: 50vh;
@@ -57,27 +86,18 @@ header .logo{
 }
 
 nav {
-  grid-area: Nav;
+  grid-area: nav;
   font-size: 0.9rem;
+  text-align: center;
   text-transform: uppercase;
 }
 
-.mob-nav-row{
-  position: relative;
-  padding: 10px 20px;
-}
-
 .mob-nav-row .menu-toggle{
-  background: none;
-  border: none;
-  color: var(--white);
   display: none;
-  position: absolute;
-  right: 0;
 } /* has mobile media query */
 
 .menu-row{
-  background: var(--gold);
+  background-color: var(--gold);
   display: block;
   padding: 20px;
 } /* has mobile media query */
@@ -89,9 +109,26 @@ nav {
 } /* has mobile media query */
 
 .menu-row .nav-link:hover{
-  border-bottom: solid var(--grey) 1px;
-  border-top: solid var(--grey) 1px;
+  border-bottom: solid var(--grey-dark) 1px;
+  border-top: solid var(--grey-dark) 1px;
   transition: 0.2s;
+}
+
+/*FOOTER*/
+footer .logo-row{
+  background-color: var(--grey-dark);
+  padding: 20px 0 10px 0;
+  text-align: center;
+}
+
+footer .logo-row .logo{
+  width: 100px;
+  height: auto;
+}
+
+footer .end-row{
+  background-color: var(--gold);
+  height: 30px;
 }
 
 /* =============COMPONENTS END============= */
@@ -102,8 +139,8 @@ nav {
 .Home {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "about about about";
+  grid-template-rows: auto auto;
+  grid-template-areas: "about" "highlights";
 }
 
 .Header {
@@ -112,10 +149,10 @@ nav {
 
 .Home .about {
   display: grid;
+  grid-area: about;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "img desc desc";
-  grid-area: about;
 }
 
 .Home .about .img {
@@ -129,14 +166,70 @@ nav {
   padding: 30px;
 }
 
+.Home .highlights{
+  background-color: var(--grey-light);
+  display: grid;
+  grid-area: highlights;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: "desc desc desc" "stay dine events";
+  padding: 30px;
+  text-align: center;
+}
+
+.Home .highlights img{
+  height: 200px;
+  object-fit: cover;
+  width: 200px;
+}
+
+.Home .highlights p{
+  text-align: left;
+}
+
+.Home .highlights .stay, .Home .highlights .dine, .Home .highlights .events{
+  padding: 20px;
+}
+
+.Home .highlights .desc{
+  grid-area: desc;
+}
+
+.Home .highlights .stay{
+  grid-area: stay;
+}
+
+.Home .highlights .dine{
+  grid-area: dine;
+}
+
+.Home .highlights .events{
+  grid-area: events;
+}
+
 /* =============PAGES END============= */
 
 /* =============MEDIA QUERIES============= */
 
 /* MOBILE */
 @media screen and (max-width: 767px){
+  /*COMPONENTS*/
+  .Header{
+    grid-template-areas: "nav" "img";
+  }
+  .mob-nav-row{
+    background-color: var(--gold);
+    height: 30px;
+    position: relative;
+    padding: 10px 20px;
+  }
   .mob-nav-row .menu-toggle{
+    background-color: var(--gold);
+    border: none;
+    color: var(--grey-dark);
     display: block;
+    position: absolute;
+    right: 0;
   }
   .menu-row{
     display: none;
@@ -144,6 +237,48 @@ nav {
   .menu-row .nav-link{
     display: block;
     padding: 10px 0;
+  }
+  /*PAGES*/
+  .Home {
+    grid-template-columns: 100vw;
+  }
+  .Home .about {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "desc" "img";
+  }
+  .Home .highlights{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "desc" "stay" "dine" "events";
+  }
+  
+  .Home .highlights img{
+    width: 60vw;
+    height: 60vw;
+  }
+}
+
+/* TABLET */
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  /*PAGES*/
+  .Home .about {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "img desc desc";
+  }
+}
+
+/* DESKTOP */
+@media screen and (min-width: 1024px){
+  .Home .about {
+    align-items: center;
+  }
+  .Home .about .desc {
+    padding: 30px 100px;
+  }
+  .Home .about .img{
+    min-height: 500px;
   }
 }
 

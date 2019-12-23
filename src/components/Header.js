@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-
-import {FaAlignRight} from 'react-icons/fa';
+import {MdMenu} from 'react-icons/md';
 import {Link} from 'react-router-dom';
 
-import logo from '../images/logo_white.png';
+import logo from '../images/logo_white.svg';
 import headerImg from '../images/imgHome.jpg';
 
 export default class Header extends Component {
@@ -18,18 +17,18 @@ export default class Header extends Component {
     return (
       <div className="Header">
 
-        <header style={{ backgroundImage: `url(${headerImg})` }}>
-          <div className="mob-nav-row">
-            <button type="button" className="menu-toggle" onClick={this.toggle}>
-              <FaAlignRight/>
-            </button>
-          </div>
+        <header className="img" style={{ backgroundImage: `url(${headerImg})` }}>
           <Link to="/">
             <img className="logo" src={logo} alt="Hotel Al-Qamar logo"/>
           </Link>
         </header>
 
         <nav>
+          <div className="mob-nav-row">
+            <button type="button" className="menu-toggle" onClick={this.toggle}>
+              <MdMenu size={28}/>
+            </button>
+          </div>
           <div className="menu-row">
             <Link to="/" className="nav-link">
               Home
